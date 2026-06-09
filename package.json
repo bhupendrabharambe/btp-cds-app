@@ -1,0 +1,34 @@
+{
+  "name": "btp-cds-app",
+  "version": "1.0.0",
+  "description": "Simple BTP CDS Application for data display",
+  "main": "server.js",
+  "scripts": {
+    "start": "cds run",
+    "watch": "cds watch",
+    "debug": "cds watch --debug",
+    "build": "cds build/all",
+    "deploy": "cds deploy"
+  },
+  "keywords": [
+    "CAP",
+    "CDS",
+    "BTP",
+    "SAP"
+  ],
+  "author": "Your Name",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@sap/cds": "^7.0.0",
+    "@sap/cds-compiler": "^3.0.0",
+    "express": "^4.18.0"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^7.0.0",
+    "@sap/eslint-plugin-cds": "^3.0.0",
+    "sqlite3": "^5.1.0"
+  },
+  "engines": {
+    "node": "^16.0.0"
+  }
+}

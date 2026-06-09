@@ -1,0 +1,47 @@
+_schema-version: '3.1'
+ID: btp-cds-app
+version: 1.0.0
+description: "Simple BTP CDS Application for data display"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install
+        - npm run build
+
+modules:
+  - name: btp-cds-app-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      instances: 1
+      memory: 256M
+    build-parameters:
+      builder: npm
+      commands:
+        - npm ci
+    provides:
+      - name: srv_api
+        public: true
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: btp-cds-app-db
+
+  - name: btp-cds-app-app
+    type: html5
+    path: app
+    parameters:
+      builder: custom
+      commands: []
+      supported-platforms: []
+
+resources:
+  - name: btp-cds-app-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      instances: 1
